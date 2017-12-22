@@ -16,22 +16,37 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <button
+      class="hello__logout"
+      @click="logout"
+    >Logout</button>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase';
+
 export default {
   name: 'hello',
+
   data() {
     return {
       msg: 'Welcome to Your Vue.js PWA',
     };
   },
+
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login');
+      });
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss">
 h1, h2 {
   font-weight: normal;
 }
@@ -48,5 +63,18 @@ li {
 
 a {
   color: #35495E;
+}
+
+.hello {
+  &__logout {
+    padding: 10px 20px;
+    background: #42b983;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 22px;
+    outline: 0;
+    cursor: pointer;
+  }
 }
 </style>
