@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import { auth } from '../../api/firebase';
 
 export default {
   name: 'login-view',
@@ -38,7 +38,7 @@ export default {
 
   methods: {
     signIn() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+      auth.signInWithEmailAndPassword(this.email, this.password).then(
         () => {
           this.$router.replace('hello');
         },
